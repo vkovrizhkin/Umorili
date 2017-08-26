@@ -1,4 +1,4 @@
-package com.kovrizhkin.rssretrofit2;
+package com.kovrizhkin.rssretrofit2.model;
 
 /**
  * Created by Kovrizhkin V.A. on 20.08.2017.

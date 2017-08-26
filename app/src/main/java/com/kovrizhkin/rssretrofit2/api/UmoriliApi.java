@@ -1,4 +1,6 @@
-package com.kovrizhkin.rssretrofit2;
+package com.kovrizhkin.rssretrofit2.api;
+
+import com.kovrizhkin.rssretrofit2.model.PostModel;
 
 import java.util.List;
 

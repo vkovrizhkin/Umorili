@@ -1,4 +1,4 @@
-package com.kovrizhkin.rssretrofit2;
+package com.kovrizhkin.rssretrofit2.adapters;
 
 /**
  * Created by Kovrizhkin V.A. on 20.08.2017.
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.kovrizhkin.rssretrofit2.R;
+import com.kovrizhkin.rssretrofit2.model.PostModel;
 
 import java.util.List;
 

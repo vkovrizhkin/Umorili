@@ -2,6 +2,8 @@ package com.kovrizhkin.rssretrofit2;
 
 import android.app.Application;
 
+import com.kovrizhkin.rssretrofit2.api.UmoriliApi;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

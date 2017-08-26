@@ -1,7 +1,6 @@
 package com.kovrizhkin.rssretrofit2.fragments;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.kovrizhkin.rssretrofit2.App;
-import com.kovrizhkin.rssretrofit2.MainActivity;
 import com.kovrizhkin.rssretrofit2.R;
 import com.kovrizhkin.rssretrofit2.adapters.PostsAdapter;
 import com.kovrizhkin.rssretrofit2.model.PostModel;
@@ -31,13 +28,13 @@ import retrofit2.Response;
  */
 public class FeedFragment extends Fragment {
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
-    List<PostModel> posts;
+    private List<PostModel> posts;
 
-    ImageView imageView;
+    private ImageView imageView;
 
-    FloatingActionButton fab;
+    private FloatingActionButton fab;
 
 
     @Override
@@ -68,7 +65,7 @@ public class FeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        PostsAdapter adapter = new PostsAdapter(posts);
+        PostsAdapter adapter = new PostsAdapter(posts, getContext());
         recyclerView.setAdapter(adapter);
 
         App.getApi().getData("bash.im", "bash", 50).enqueue(new Callback<List<PostModel>>() {
@@ -84,7 +81,7 @@ public class FeedFragment extends Fragment {
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 imageView.setVisibility(View.VISIBLE);
-               // Toast.makeText(getContext(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
             }
         });
     }

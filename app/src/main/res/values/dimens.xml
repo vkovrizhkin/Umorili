@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_post">8dp</dimen>
+
+    <dimen name="text_post">16sp</dimen>
+</resources>

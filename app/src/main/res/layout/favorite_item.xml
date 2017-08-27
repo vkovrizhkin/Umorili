@@ -4,21 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_margin="@dimen/margin_post"
     android:id="@+id/favorite_item_layout">
 
     <TextView
         android:id="@+id/favorite_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_post"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_post"
         tolls:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
 
     <TextView
-        android:id="@+id/favorite_link"
+        android:id="@+id/favorite_site"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tolls:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
+        android:gravity="right"
+        tolls:text="sssssssssssssssssssssssssssss" />
 
 </LinearLayout>

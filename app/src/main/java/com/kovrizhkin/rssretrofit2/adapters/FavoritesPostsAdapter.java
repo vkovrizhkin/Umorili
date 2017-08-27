@@ -1,7 +1,9 @@
 package com.kovrizhkin.rssretrofit2.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,14 +40,14 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView text;
-        TextView link;
+        TextView site;
         View container;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             text = itemView.findViewById(R.id.favorite_text);
-            link = itemView.findViewById(R.id.favorite_link);
+            site = itemView.findViewById(R.id.favorite_site);
             container = itemView.findViewById(R.id.favorite_item_layout);
         }
     }
@@ -59,8 +61,14 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
     @Override
     public void onBindViewHolder(FavoritesPostsAdapter.ViewHolder holder, final int position) {
 
-        holder.text.setText(postsList.get(position).getText());
-        holder.link.setText(postsList.get(position).getLink());
+        RealmPostModel post = postsList.get(position);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            holder.text.setText(Html.fromHtml(post.getText(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            holder.text.setText(Html.fromHtml(post.getText()));
+        }
+        holder.site.setText(post.getLink());
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override

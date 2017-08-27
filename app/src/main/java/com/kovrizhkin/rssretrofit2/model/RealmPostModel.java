@@ -12,7 +12,16 @@ public class RealmPostModel extends RealmObject {
 
     private String link;
 
-   // private String name;
+    private String site;
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+    // private String name;
 
 
     public String getText() {

@@ -19,7 +19,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://umorili.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())

@@ -68,7 +68,7 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
         } else {
             holder.text.setText(Html.fromHtml(post.getText()));
         }
-        holder.site.setText(post.getLink());
+        holder.site.setText(post.getSite());
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override

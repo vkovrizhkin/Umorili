@@ -55,6 +55,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 RealmPostModel realmPostModel = realm.createObject(RealmPostModel.class);
                 realmPostModel.setText(posts.get(position).getElementPureHtml());
                 realmPostModel.setLink(posts.get(position).getLink());
+                realmPostModel.setSite(posts.get(position).getSite());
                 realm.commitTransaction();
             }
         });
@@ -76,9 +77,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            post = (TextView) itemView.findViewById(R.id.postitem_post);
-            site = (TextView) itemView.findViewById(R.id.postitem_site);
-            container = (View) itemView.findViewById(R.id.post_item_layout);
+            post = itemView.findViewById(R.id.postitem_post);
+            site = itemView.findViewById(R.id.postitem_site);
+            container = itemView.findViewById(R.id.post_item_layout);
         }
     }
 }

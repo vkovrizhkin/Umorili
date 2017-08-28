@@ -22,7 +22,7 @@ import io.realm.RealmResults;
  * Created by Kovrizhkin V.A. on 26.08.2017.
  */
 
-public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAdapter.ViewHolder> implements RealmChangeListener {
+public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAdapter.ViewHolder> /*implements RealmChangeListener*/ {
 
     private RealmResults<RealmPostModel> postsList;
 
@@ -32,7 +32,7 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
 
     public FavoritesPostsAdapter(RealmResults<RealmPostModel> posts, Context context) {
         postsList = posts;
-        postsList.addChangeListener(this);
+        //postsList.addChangeListener(this);
         //this.context = context;
         realm = Realm.getInstance(context);
     }
@@ -63,6 +63,13 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
 
         RealmPostModel post = postsList.get(position);
 
+        postsList.addChangeListener(new RealmChangeListener() {
+            @Override
+            public void onChange() {
+                notifyItemChanged(position);
+            }
+        });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.text.setText(Html.fromHtml(post.getText(), Html.FROM_HTML_MODE_LEGACY));
         } else {
@@ -83,6 +90,7 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
                     }
                 }
                 realm.commitTransaction();
+                notifyItemRemoved(position);
             }
         });
     }
@@ -97,8 +105,8 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
 
     }
 
-    @Override
+/*    @Override
     public void onChange() {
         notifyDataSetChanged();
-    }
+    }*/
 }

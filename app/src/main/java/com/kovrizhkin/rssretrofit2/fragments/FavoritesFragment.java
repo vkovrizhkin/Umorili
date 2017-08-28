@@ -17,6 +17,10 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +39,11 @@ public class FavoritesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = view.findViewById(R.id.favorite_recycler_view);
+        recyclerView.setItemAnimator(new OvershootInRightAnimator());
+
+        recyclerView.getItemAnimator().setAddDuration(500);
+        recyclerView.getItemAnimator().setRemoveDuration(500);
+
         realm = Realm.getInstance(getContext());
         postsList = realm.allObjects(RealmPostModel.class);
         FavoritesPostsAdapter favoritesPostsAdapter = new FavoritesPostsAdapter(postsList, getContext());

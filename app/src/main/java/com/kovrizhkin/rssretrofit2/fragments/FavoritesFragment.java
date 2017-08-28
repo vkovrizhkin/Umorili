@@ -37,7 +37,7 @@ public class FavoritesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.favorite_recycler_view);
         realm = Realm.getInstance(getContext());
         postsList = realm.allObjects(RealmPostModel.class);
-        FavoritesPostsAdapter favoritesPostsAdapter = new FavoritesPostsAdapter(postsList, getContext());
+        FavoritesPostsAdapter favoritesPostsAdapter = new FavoritesPostsAdapter(postsList, getContext(), getActivity().getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(favoritesPostsAdapter);
 

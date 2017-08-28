@@ -2,6 +2,7 @@ package com.kovrizhkin.rssretrofit2.adapters;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kovrizhkin.rssretrofit2.R;
+import com.kovrizhkin.rssretrofit2.fragments.FeedDialogFragment;
 import com.kovrizhkin.rssretrofit2.model.RealmPostModel;
 
 import java.util.List;
@@ -28,13 +30,18 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
 
     private Realm realm;
 
+    private FeedDialogFragment dialogFragment;
+
+    private FragmentManager fragmentManager;
+
     // private Context context;
 
-    public FavoritesPostsAdapter(RealmResults<RealmPostModel> posts, Context context) {
+    public FavoritesPostsAdapter(RealmResults<RealmPostModel> posts, Context context, FragmentManager fragmentManager) {
         postsList = posts;
         postsList.addChangeListener(this);
         //this.context = context;
         realm = Realm.getInstance(context);
+        this.fragmentManager = fragmentManager;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,7 +80,9 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                realm.beginTransaction();
+                dialogFragment = FeedDialogFragment.newInstance(false);
+                dialogFragment.show(fragmentManager, "actions");
+/*                realm.beginTransaction();
                 RealmResults<RealmPostModel> forRemoving = realm.where(RealmPostModel.class)
                         .equalTo("link", postsList.get(position).getLink())
                         .findAll();
@@ -82,7 +91,7 @@ public class FavoritesPostsAdapter extends RecyclerView.Adapter<FavoritesPostsAd
                         forRemoving.get(i).removeFromRealm();
                     }
                 }
-                realm.commitTransaction();
+                realm.commitTransaction();*/
             }
         });
     }

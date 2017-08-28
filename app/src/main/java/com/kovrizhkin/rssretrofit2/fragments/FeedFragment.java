@@ -65,7 +65,7 @@ public class FeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        PostsAdapter adapter = new PostsAdapter(posts, getContext());
+        PostsAdapter adapter = new PostsAdapter(posts, getContext(), getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
 
         App.getApi().getData("bash.im", "bash", 50).enqueue(new Callback<List<PostModel>>() {

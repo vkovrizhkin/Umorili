@@ -6,6 +6,7 @@ package com.kovrizhkin.rssretrofit2.adapters;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kovrizhkin.rssretrofit2.R;
+import com.kovrizhkin.rssretrofit2.fragments.FeedDialogFragment;
 import com.kovrizhkin.rssretrofit2.model.PostModel;
 import com.kovrizhkin.rssretrofit2.model.RealmPostModel;
 
@@ -27,9 +29,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     private Realm realm;
 
-    public PostsAdapter(List<PostModel> posts, Context context) {
+    private Context context;
+
+    private FeedDialogFragment dialogFragment;
+
+    private FragmentManager fragmentManager;
+
+
+    public PostsAdapter(List<PostModel> posts, Context context, FragmentManager fragmentManager) {
         realm = Realm.getInstance(context);
         this.posts = posts;
+        this.context = context;
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -51,12 +62,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                realm.beginTransaction();
+                dialogFragment = FeedDialogFragment.newInstance(true);
+                dialogFragment.show(fragmentManager, "actions");
+/*                realm.beginTransaction();
                 RealmPostModel realmPostModel = realm.createObject(RealmPostModel.class);
                 realmPostModel.setText(posts.get(position).getElementPureHtml());
                 realmPostModel.setLink(posts.get(position).getLink());
                 realmPostModel.setSite(posts.get(position).getSite());
-                realm.commitTransaction();
+                realm.commitTransaction();*/
             }
         });
     }

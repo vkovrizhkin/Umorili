@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RSS Retrofit2</string>
+    <integer name="com_vk_sdk_AppId">6270648</integer>
 </resources>

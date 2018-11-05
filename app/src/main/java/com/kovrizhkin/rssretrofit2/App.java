@@ -1,6 +1,9 @@
 package com.kovrizhkin.rssretrofit2;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.vk.sdk.VKSdk;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,6 +26,8 @@ public class App extends Application {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         umoriliApi = retrofit.create(UmoriliApi.class);
+
+        VKSdk.initialize(this);
     }
 
     public static UmoriliApi getApi() {

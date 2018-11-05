@@ -35,6 +35,16 @@
             android:layout_margin="16dp"
             android:src="@drawable/ic_autorenew_deep_purple_50_36dp"
             app:fab_colorNormal="@color/colorPrimaryDark" />
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/go_to_post_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="78dp"
+            android:src="@drawable/ic_bookmark_white_36dp"
+            app:fab_colorNormal="@color/colorPrimaryDark" />
     </RelativeLayout>
 
 
